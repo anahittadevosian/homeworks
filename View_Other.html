@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Inspiration Page</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f0f4f8;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+        }
+        .container {
+            margin-top: 20px;
+        }
+        .result {
+            background-color: #ffffff;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #333;
+        }
+        .highlight {
+            color: #007bff;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>Words of Wisdom and Inspiration</h1>
+    <div class="container">
+        <div class="result" id="string"></div>
+        <div class="result" id="number"></div>
+        <div class="result" id="boolean"></div>
+        <div class="result" id="null"></div>
+        <div class="result" id="undefined"></div>
+        <div class="result" id="object"></div>
+        <div class="result" id="array"></div>
+        <div class="result" id="temperature"></div>
+    </div>
+
+    <script>
+        const quote = "What doesn't kill us makes us stronger.";
+        document.getElementById('string').innerHTML = `<p class="highlight">Quote of the Day:</p>
+            <p>${quote}</p>
+            <p>Uppercase: ${quote.toUpperCase()}</p>
+            <p>Lowercase: ${quote.toLowerCase()}</p>`;
+
+        const favoriteNumber = 13;
+        const squaredNumber = Math.pow(favoriteNumber, 2);
+        const randomNumber = Math.random() * favoriteNumber;
+        const roundedNumber = Math.round(randomNumber);
+        const minNumber = Math.min(5, 10, 15, favoriteNumber);
+        const maxNumber = Math.max(5, 10, 15, favoriteNumber);
+        document.getElementById('number').innerHTML = `<p class="highlight">How many times do you have to step on the same rake to finally change your path?:</p>
+            <p>${favoriteNumber}</p>
+            <p>Squared: ${squaredNumber}</p>
+            <p>Random Number (0 to ${favoriteNumber}): ${randomNumber.toFixed(2)}</p>
+            <p>Rounded Random Number: ${roundedNumber}</p>
+            <p>Min Number: ${minNumber}</p>
+            <p>Max Number: ${maxNumber}</p>`;
+
+        const userIsActive = true;
+        const userHasPremiumSubscription = false;
+        const isPremiumUser = userIsActive && userHasPremiumSubscription;
+        const isNotPremiumUser = !isPremiumUser;
+        document.getElementById('boolean').innerHTML = `<p class="highlight">User Status:</p>
+            <p>Active User: ${userIsActive ? "Yes" : "No"}</p>
+            <p>Premium Subscription: ${userHasPremiumSubscription ? "Yes" : "No"}</p>
+            <p>Access Level: ${isPremiumUser ? "Premium" : "Standard"}</p>
+            <p>Not Premium User: ${isNotPremiumUser ? "Yes" : "No"}</p>`;
+
+        const userProfile = null;
+        const defaultProfile = { name: "Guest", age: "Unknown" };
+        document.getElementById('null').innerHTML = `<p class="highlight">User Profile:</p>
+            <p>${userProfile === null ? "No user profile found." : "User profile exists."}</p>
+            <p>Default Profile Name: ${userProfile?.name ?? defaultProfile.name}</p>
+            <p>Default Profile Age: ${userProfile?.age ?? defaultProfile.age}</p>`;
+
+        let upcomingEvents;
+        const hasEvents = false;
+        document.getElementById('undefined').innerHTML = `<p class="highlight">Upcoming Events:</p>
+            <p>${hasEvents ? "Details will be available soon." : "No events scheduled."}</p>
+            <p>Upcoming Events Variable: ${upcomingEvents === undefined ? "Not defined" : upcomingEvents}</p>`;
+
+        const complexProfile = {
+            name: "Michelle",
+            age: 3,
+            profession: "Domestic Cat",
+            hobbies: ["Eating", "Sleeping", "Creating chaos"],
+            skills: {
+                FluffyAntistress: ["Meows", "Purrs", "Can be used as a pillow"],
+                LucifersMessenger: ["Spoils furniture", "Bites legs", "Curses with a look"]
+            },
+            getSkills() {
+                return `Fluffy Antistress: ${this.skills.FluffyAntistress.join(', ')}
+                <br>Lucifer's Messenger: ${this.skills.LucifersMessenger.join(', ')}`;
+            }
+        };
+        document.getElementById('object').innerHTML = `<p class="highlight">Profile Information:</p>
+            <p>Name: ${complexProfile.name}<br>
+            Age: ${complexProfile.age}<br>
+            Profession: ${complexProfile.profession}<br>
+            Hobbies: ${complexProfile.hobbies.join(', ')}<br>
+            Skills:<br>${complexProfile.getSkills()}</p>`;
+
+        const favoriteBooks = [
+            { title: "1984", author: "George Orwell", year: 1949 },
+            { title: "To Kill a Mockingbird", author: "Harper Lee", year: 1960 },
+            { title: "The Catcher in the Rye", author: "J.D. Salinger", year: 1951 },
+            { title: "Fahrenheit 451", author: "Ray Bradbury", year: 1953 }
+        ];
+        const sortedBooks = favoriteBooks.sort((a, b) => a.year - b.year);
+        const filteredBooks = favoriteBooks.filter(book => book.year > 1950);
+        document.getElementById('array').innerHTML = `<p class="highlight">Favorite Books:</p>
+            <ul>
+                ${sortedBooks.map(book => `<li><strong>${book.title}</strong> by ${book.author} (${book.year})</li>`).join('')}
+            </ul>
+            <p class="highlight">Filtered Books (Post-1950):</p>
+            <ul>
+                ${filteredBooks.map(book => `<li><strong>${book.title}</strong> by ${book.author} (${book.year})</li>`).join('')}
+            </ul>`;
+
+        function fahrenheitToCelsius(fahrenheit) {
+            return (fahrenheit - 32) * 5 / 9;
+        }
+
+        const fahrenheitTemperature = 451;
+        const celsiusTemperature = fahrenheitToCelsius(fahrenheitTemperature);
+
+        console.log(`Temperature in Celsius: ${celsiusTemperature.toFixed(2)}°C`);
+
+        document.getElementById('temperature').innerHTML = `<p class="highlight">Temperature Conversion:</p>
+            <p>${fahrenheitTemperature}°F is equivalent to ${celsiusTemperature.toFixed(2)}°C</p>`;
+    </script>
+</body>
+</html>

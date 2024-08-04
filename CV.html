@@ -1,58 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<style>
-    body {
-        background-color: #cfe1f7; 
-        font-family: Arial, sans-serif;
-    }
-    h1 {
-        text-align: center;
-        font-style: italic;
-        font-weight: bold;
-        color: #1f3a93; 
-    }
-    h4 {
-    	text-align: center;
-        font-style: italic;
-        font-weight: bold;
-        color: #1f3a93; 
-    }
-    p.education, p.experience {
-        font-style: italic;
-        font-weight: bold;
-        color: #1f3a93; 
-    }
-    table {
-        width: 100%;
-        border-collapse: collapse;
-        background-color: #f5f5dc; 
-        margin-top: 20px;
-    }
-    table, th, td {
-        border: 1px solid #1f3a93; 
-    }
-    th, td {
-        padding: 10px;
-        text-align: left;
-    }
-       .view-button {
-        margin-top: 20px;
-        background-color: #1f3a93;
-        color: white;
-        border: yes;
-        padding: 10px 20px;
-        font-size: 16px;
-        cursor: pointer;
-        border-radius: 5px;
-        display: inline-block;
-    }
-</style>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #cfe1f7; 
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+        h1 {
+            text-align: center;
+            font-style: italic;
+            font-weight: bold;
+            color: #1f3a93; 
+        }
+        h4 {
+            text-align: center;
+            font-style: italic;
+            font-weight: bold;
+            color: #1f3a93; 
+        }
+        p.education, p.experience {
+            font-style: italic;
+            font-weight: bold;
+            color: #1f3a93; 
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: #f5f5dc; 
+            margin-top: 20px;
+        }
+        table, th, td {
+            border: 1px solid #1f3a93; 
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+        .highlight {
+            color: #1f3a93;
+            font-weight: bold;
+        }
+    </style>
 </head>
 <body>
     <h1>Luiza Nersesyan</h1>
     <h4>01.12.1997</h4>
-    
+	<h5>luizanersesyan1@gmail</h5>
+    <a href="https://www.linkedin.com/in/luiza-nersesyan-8ab7802aa/" target="_blank" class="btn btn-primary btn-lg my-3">View LinkedIn Profile</a>
+
     <p class="education">Education</p>
     <table>
         <tr>
@@ -92,13 +91,13 @@
             <td>May 2019 - Oct 2023</td>
         </tr>
         <tr>
-            <td>University Lecturer /Teaching the subjects “Victimology”, “Crimes against economic activity”, “Crimes against public service”, “Fundamentals of law”/</td>
+            <td>University Lecturer /Teaching the subjects "Victimology", "Crimes against economic activity", "Crimes against public service", "Fundamentals of law"</td>
             <td>Artsakh State University</td>
             <td>Part-time</td>
             <td>Sep 2020 - Oct 2023</td>
         </tr>
         <tr>
-            <td>University Lecturer Teaching the subject “Civil Procedure”, supervising coursework and scientific papers/</td>
+            <td>University Lecturer Teaching the subject "Civil Procedure", supervising coursework and scientific papers</td>
             <td>Mesrop Mashtots University</td>
             <td>Part-time</td>
             <td>Sep 2021 - Jul 2022</td>
@@ -116,7 +115,26 @@
             <td>Jun 2018 - Apr 2019</td>
         </tr>
     </table>
-<a class="view-button" href="diploma.pdf">View Diplomas</a>
+    
+    <a href="diploma.pdf" class="btn btn-secondary btn-lg my-3">View Diplomas</a>
+
+    <button id="NewWindowButton" class="btn btn-info btn-lg my-3">View Other</button>
+
+    <script>
+        document.getElementById('NewWindowButton').addEventListener('click', function() {
+            window.open('View_Other.html', '_blank', 'width=800,height=600');
+        });
+
+        const CVData = {
+            name: "Luiza Nersesyan",
+            email: "luizanersesyan1@gmail.com"           
+        };
+
+        document.getElementById('info-span').innerText = `
+            Name: ${CVData.name}
+            Email: ${CVData.email}
+        `;
+    </script>
+    <span id="info-span" class="highlight">More...</span>
 </body>
 </html>
-
