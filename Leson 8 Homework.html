@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Lesson 8 Homework</title>
+
+<h1>Lesson 8 Homework </h1>
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+  <h2>Temperature Converter</h2>
+  <p>Temperature in Fahrenheit: <span id="fahrenheit">100</span></p>
+  <p>Temperature in Celsius: <span id="celsius"></span></p>
+
+  <script>
+    $(document).ready(function() {
+      // Function to convert Fahrenheit to Celsius
+      function fahrenheitToCelsius(fahrenheit) {
+        return (fahrenheit - 32) * 5 / 9;
+      }
+
+      // Get the Fahrenheit temperature from the page using jQuery
+      const fahrenheitTemp = $("#fahrenheit").text();
+
+      // Convert the temperature to Celsius
+      const celsiusTemp = fahrenheitToCelsius(fahrenheitTemp);
+
+      // Display the result in the console
+      console.log("Temperature in Celsius:", celsiusTemp);
+
+      // Display the result on the page using jQuery
+      $("#celsius").text(celsiusTemp.toFixed(2));
+
+      // Using different types of loops
+      const numbers = [1, 2, 3, 4, 5];
+      let text = "";
+
+      // for loop
+      for (let i = 0; i < numbers.length; i++) {
+        text += "Number using for loop: " + numbers[i] + "<br>";
+      }
+
+      // for...in loop
+      for (let index in numbers) {
+        text += "Number using for...in loop: " + numbers[index] + "<br>";
+      }
+
+      // for...of loop
+      for (let value of numbers) {
+        text += "Number using for...of loop: " + value + "<br>";
+      }
+
+      // while loop
+      let i = 0;
+      while (i < numbers.length) {
+        text += "Number using while loop: " + numbers[i] + "<br>";
+        i++;
+      }
+
+      // do...while loop
+      i = 0;
+      do {
+        text += "Number using do...while loop: " + numbers[i] + "<br>";
+        i++;
+      } while (i < numbers.length);
+
+      // Display the results of the loops on the page
+      $("body").append("<div id='loops'></div>");
+      $("#loops").html(text);
+
+      // Example function that uses different types of conditions
+      function checkTemperature(temp) {
+        if (temp < 0) {
+          return "Freezing";
+        } else if (temp >= 0 && temp < 10) {
+          return "Cold";
+        } else if (temp >= 10 && temp < 25) {
+          return "Warm";
+        } else {
+          return "Hot";
+        }
+      }
+
+      // Use the function and display the result using jQuery
+      const celsiusTempParsed = parseFloat($("#celsius").text());
+      const tempDescription = checkTemperature(celsiusTempParsed);
+      console.log("Temperature description:", tempDescription);
+      $("<p>").text("Temperature description: " + tempDescription).appendTo("body");
+
+      // Example function that uses a switch statement
+      function dayOfWeek(day) {
+        let dayName;
+        switch (day) {
+          case 0:
+            dayName = "Sunday";
+            break;
+          case 1:
+            dayName = "Monday";
+            break;
+          case 2:
+            dayName = "Tuesday";
+            break;
+          case 3:
+            dayName = "Wednesday";
+            break;
+          case 4:
+            dayName = "Thursday";
+            break;
+          case 5:
+            dayName = "Friday";
+            break;
+          case 6:
+            dayName = "Saturday";
+            break;
+          default:
+            dayName = "Unknown";
+        }
+        return dayName;
+      }
+
+      // Use the switch function and display the result using jQuery
+      const today = new Date().getDay();
+      const dayName = dayOfWeek(today);
+      console.log("Today is:", dayName);
+      $("<p>").text("Today is: " + dayName).appendTo("body");
+
+      // Function using all types of conditions
+      function checkNumber(num) {
+        let result = "";
+        if (num < 0) {
+          result = "Negative number";
+        } else if (num === 0) {
+          result = "Zero";
+        } else {
+          switch (true) {
+            case (num > 0 && num <= 10):
+              result = "Small positive number";
+              break;
+            case (num > 10 && num <= 100):
+              result = "Medium positive number";
+              break;
+            default:
+              result = "Large positive number";
+              break;
+          }
+        }
+        return result;
+      }
+
+      // Check a number using the function and display the result
+      const numberToCheck = 25;
+      const checkResult = checkNumber(numberToCheck);
+      console.log("Check Result:", checkResult);
+      $("body").append("<p>Check Result: " + checkResult + "</p>");
+    });
+  </script>
+</body>
+</html>
