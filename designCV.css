@@ -1,10 +1,11 @@
 
 body {
-background-color:#79a1eb;
+margin: 25px;
+padding: 25px;
+background-color:#87CEEB;
 color: black;
 font-size: 18px
 }
-
 
 .clearfix::after {
     content: "";
@@ -12,6 +13,7 @@ font-size: 18px
     display: table;
           }
 h1 {
+text-shadow: 5px 5px 5px gold;
 text-align:center;
 font-size: 36px;
 }
