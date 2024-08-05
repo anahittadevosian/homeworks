@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Lesson 7 Homework</title>
+</head>
+<body>
+  <h1>Lesson 7 Homework </h1>
+
+  <h2>My Contact Information</h2>
+  
+  <p id="name"></p>
+  <p id="phone"></p>
+  <p id="email"></p>
+
+  <script>
+    const contactInfo = {
+      name: "Ani Mirzoyan",
+      phone: "+37400000000",
+      email: "example@gmail.com"
+    };
+
+    document.getElementById("name").innerText = "Name: " + contactInfo.name;
+    document.getElementById("phone").innerText = "Phone: " + contactInfo.phone;
+    document.getElementById("email").innerText = "Email: " + contactInfo.email;
+  </script>
+
+ <h2>Temperature Converter</h2>
+  <p>Temperature in Fahrenheit: <span id="fahrenheit">100</span></p>
+  <p>Temperature in Celsius: <span id="celsius"></span></p>
+
+  <script>
+    
+    function fahrenheitToCelsius(fahrenheit) {
+      return (fahrenheit - 32) * 5 / 9;
+    }
+
+    const fahrenheitTemp = document.getElementById("fahrenheit").innerText;
+    
+    const celsiusTemp = fahrenheitToCelsius(fahrenheitTemp);
+    
+    console.log("Temperature in Celsius:", celsiusTemp);
+    
+    document.getElementById("celsius").innerText = celsiusTemp.toFixed(2);
+  </script>
+</body>
+</html>
