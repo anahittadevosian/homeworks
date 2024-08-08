@@ -3,6 +3,7 @@
 <head>
     <title>Inspiration Page</title>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <style>
         body {
             background-color: #f0f4f8;
@@ -44,98 +45,130 @@
     </div>
 
     <script>
-        const quote = "What doesn't kill us makes us stronger.";
-        document.getElementById('string').innerHTML = `<p class="highlight">Quote of the Day:</p>
-            <p>${quote}</p>
-            <p>Uppercase: ${quote.toUpperCase()}</p>
-            <p>Lowercase: ${quote.toLowerCase()}</p>`;
+        $(document).ready(function() {
+            const quote = "What doesn't kill us makes us stronger.";
+            $('#string').html(`<p class="highlight">Quote of the Day:</p>
+                <p>${quote}</p>
+                <p>Uppercase: ${quote.toUpperCase()}</p>
+                <p>Lowercase: ${quote.toLowerCase()}</p>`);
 
-        const favoriteNumber = 13;
-        const squaredNumber = Math.pow(favoriteNumber, 2);
-        const randomNumber = Math.random() * favoriteNumber;
-        const roundedNumber = Math.round(randomNumber);
-        const minNumber = Math.min(5, 10, 15, favoriteNumber);
-        const maxNumber = Math.max(5, 10, 15, favoriteNumber);
-        document.getElementById('number').innerHTML = `<p class="highlight">How many times do you have to step on the same rake to finally change your path?:</p>
-            <p>${favoriteNumber}</p>
-            <p>Squared: ${squaredNumber}</p>
-            <p>Random Number (0 to ${favoriteNumber}): ${randomNumber.toFixed(2)}</p>
-            <p>Rounded Random Number: ${roundedNumber}</p>
-            <p>Min Number: ${minNumber}</p>
-            <p>Max Number: ${maxNumber}</p>`;
+            const favoriteNumber = 13;
+            const squaredNumber = Math.pow(favoriteNumber, 2);
+            const randomNumber = Math.random() * favoriteNumber;
+            const roundedNumber = Math.round(randomNumber);
+            const minNumber = Math.min(5, 10, 15, favoriteNumber);
+            const maxNumber = Math.max(5, 10, 15, favoriteNumber);
+            $('#number').html(`<p class="highlight">How many times do you have to step on the same rake to finally change your path?:</p>
+                <p>${favoriteNumber}</p>
+                <p>Squared: ${squaredNumber}</p>
+                <p>Random Number (0 to ${favoriteNumber}): ${randomNumber.toFixed(2)}</p>
+                <p>Rounded Random Number: ${roundedNumber}</p>
+                <p>Min Number: ${minNumber}</p>
+                <p>Max Number: ${maxNumber}</p>`);
 
-        const userIsActive = true;
-        const userHasPremiumSubscription = false;
-        const isPremiumUser = userIsActive && userHasPremiumSubscription;
-        const isNotPremiumUser = !isPremiumUser;
-        document.getElementById('boolean').innerHTML = `<p class="highlight">User Status:</p>
-            <p>Active User: ${userIsActive ? "Yes" : "No"}</p>
-            <p>Premium Subscription: ${userHasPremiumSubscription ? "Yes" : "No"}</p>
-            <p>Access Level: ${isPremiumUser ? "Premium" : "Standard"}</p>
-            <p>Not Premium User: ${isNotPremiumUser ? "Yes" : "No"}</p>`;
-
-        const userProfile = null;
-        const defaultProfile = { name: "Guest", age: "Unknown" };
-        document.getElementById('null').innerHTML = `<p class="highlight">User Profile:</p>
-            <p>${userProfile === null ? "No user profile found." : "User profile exists."}</p>
-            <p>Default Profile Name: ${userProfile?.name ?? defaultProfile.name}</p>
-            <p>Default Profile Age: ${userProfile?.age ?? defaultProfile.age}</p>`;
-
-        let upcomingEvents;
-        const hasEvents = false;
-        document.getElementById('undefined').innerHTML = `<p class="highlight">Upcoming Events:</p>
-            <p>${hasEvents ? "Details will be available soon." : "No events scheduled."}</p>
-            <p>Upcoming Events Variable: ${upcomingEvents === undefined ? "Not defined" : upcomingEvents}</p>`;
-
-        const complexProfile = {
-            name: "Michelle",
-            age: 3,
-            profession: "Domestic Cat",
-            hobbies: ["Eating", "Sleeping", "Creating chaos"],
-            skills: {
-                FluffyAntistress: ["Meows", "Purrs", "Can be used as a pillow"],
-                LucifersMessenger: ["Spoils furniture", "Bites legs", "Curses with a look"]
-            },
-            getSkills() {
-                return `Fluffy Antistress: ${this.skills.FluffyAntistress.join(', ')}
-                <br>Lucifer's Messenger: ${this.skills.LucifersMessenger.join(', ')}`;
+            const userIsActive = true;
+            const userHasPremiumSubscription = false;
+            let accessLevel;
+            if (userIsActive && userHasPremiumSubscription) {
+                accessLevel = "Premium";
+            } else {
+                accessLevel = "Standard";
             }
-        };
-        document.getElementById('object').innerHTML = `<p class="highlight">Profile Information:</p>
-            <p>Name: ${complexProfile.name}<br>
-            Age: ${complexProfile.age}<br>
-            Profession: ${complexProfile.profession}<br>
-            Hobbies: ${complexProfile.hobbies.join(', ')}<br>
-            Skills:<br>${complexProfile.getSkills()}</p>`;
+            let notPremiumUser;
+            if (!userIsActive || !userHasPremiumSubscription) {
+                notPremiumUser = "Yes";
+            } else {
+                notPremiumUser = "No";
+            }
+            $('#boolean').html(`<p class="highlight">User Status:</p>
+                <p>Active User: ${userIsActive ? "Yes" : "No"}</p>
+                <p>Premium Subscription: ${userHasPremiumSubscription ? "Yes" : "No"}</p>
+                <p>Access Level: ${accessLevel}</p>
+                <p>Not Premium User: ${notPremiumUser}</p>`);
 
-        const favoriteBooks = [
-            { title: "1984", author: "George Orwell", year: 1949 },
-            { title: "To Kill a Mockingbird", author: "Harper Lee", year: 1960 },
-            { title: "The Catcher in the Rye", author: "J.D. Salinger", year: 1951 },
-            { title: "Fahrenheit 451", author: "Ray Bradbury", year: 1953 }
-        ];
-        const sortedBooks = favoriteBooks.sort((a, b) => a.year - b.year);
-        const filteredBooks = favoriteBooks.filter(book => book.year > 1950);
-        document.getElementById('array').innerHTML = `<p class="highlight">Favorite Books:</p>
-            <ul>
-                ${sortedBooks.map(book => `<li><strong>${book.title}</strong> by ${book.author} (${book.year})</li>`).join('')}
-            </ul>
-            <p class="highlight">Filtered Books (Post-1950):</p>
-            <ul>
-                ${filteredBooks.map(book => `<li><strong>${book.title}</strong> by ${book.author} (${book.year})</li>`).join('')}
-            </ul>`;
+            const userProfile = null;
+            const defaultProfile = { name: "Michelle", age: "3" };
+            let profileStatus;
+            if (userProfile === null) {
+                profileStatus = "No user profile found.";
+            } else {
+                profileStatus = "User profile exists.";
+            }
+            $('#null').html(`<p class="highlight">User Profile:</p>
+                <p>${profileStatus}</p>
+                <p>Default Profile Name: ${userProfile?.name ?? defaultProfile.name}</p>
+                <p>Default Profile Age: ${userProfile?.age ?? defaultProfile.age}</p>`);
 
-        function fahrenheitToCelsius(fahrenheit) {
-            return (fahrenheit - 32) * 5 / 9;
-        }
+            let upcomingEvents;
+            const hasEvents = false;
+            let eventsStatus;
+            if (hasEvents) {
+                eventsStatus = "Details will be available soon.";
+            } else {
+                eventsStatus = "No events scheduled.";
+            }
+            $('#undefined').html(`<p class="highlight">Upcoming Events:</p>
+                <p>${eventsStatus}</p>
+                <p>Upcoming Events Variable: ${typeof upcomingEvents === 'undefined' ? "Not defined" : upcomingEvents}</p>`);
 
-        const fahrenheitTemperature = 451;
-        const celsiusTemperature = fahrenheitToCelsius(fahrenheitTemperature);
+            const complexProfile = {
+                name: "Michelle",
+                age: 3,
+                profession: "Domestic Cat",
+                hobbies: ["Eating", "Sleeping", "Creating chaos"],
+                skills: {
+                    FluffyAntistress: ["Meows", "Purrs", "Can be used as a pillow"],
+                    LucifersMessenger: ["Spoils furniture", "Bites legs", "Curses with a look"]
+                },
+                getSkills() {
+                    return `Fluffy Antistress: ${this.skills.FluffyAntistress.join(', ')}
+                    <br>Lucifer's Messenger: ${this.skills.LucifersMessenger.join(', ')}`;
+                }
+            };
+            $('#object').html(`<p class="highlight">Profile Information:</p>
+                <p>Name: ${complexProfile.name}<br>
+                Age: ${complexProfile.age}<br>
+                Profession: ${complexProfile.profession}<br>
+                Hobbies: ${complexProfile.hobbies.join(', ')}<br>
+                Skills:<br>${complexProfile.getSkills()}</p>`);
 
-        console.log(`Temperature in Celsius: ${celsiusTemperature.toFixed(2)}°C`);
+            const favoriteBooks = [
+                { title: "1984", author: "George Orwell", year: 1949 },
+                { title: "To Kill a Mockingbird", author: "Harper Lee", year: 1960 },
+                { title: "The Catcher in the Rye", author: "J.D. Salinger", year: 1951 },
+                { title: "Fahrenheit 451", author: "Ray Bradbury", year: 1953 }
+            ];
+            const sortedBooks = favoriteBooks.sort((a, b) => a.year - b.year);
+            const filteredBooks = favoriteBooks.filter(book => book.year > 1950);
 
-        document.getElementById('temperature').innerHTML = `<p class="highlight">Temperature Conversion:</p>
-            <p>${fahrenheitTemperature}°F is equivalent to ${celsiusTemperature.toFixed(2)}°C</p>`;
+            let bookList = '';
+            for (let i = 0; i < sortedBooks.length; i++) {
+                const book = sortedBooks[i];
+                bookList += `<li><strong>${book.title}</strong> by ${book.author} (${book.year})</li>`;
+            }
+
+            let filteredBookList = '';
+            for (const book of filteredBooks) {
+                filteredBookList += `<li><strong>${book.title}</strong> by ${book.author} (${book.year})</li>`;
+            }
+
+            $('#array').html(`<p class="highlight">Favorite Books:</p>
+                <ul>${bookList}</ul>
+                <p class="highlight">Filtered Books (Post-1950):</p>
+                <ul>${filteredBookList}</ul>`);
+
+            function fahrenheitToCelsius(fahrenheit) {
+                return (fahrenheit - 32) * 5 / 9;
+            }
+
+            const fahrenheitTemperature = 451;
+            const celsiusTemperature = fahrenheitToCelsius(fahrenheitTemperature);
+
+            console.log(`Temperature in Celsius: ${celsiusTemperature.toFixed(2)}°C`);
+
+            $('#temperature').html(`<p class="highlight">Temperature Conversion:</p>
+                <p>${fahrenheitTemperature}°F is equivalent to ${celsiusTemperature.toFixed(2)}°C</p>`);
+        });
     </script>
 </body>
 </html>
