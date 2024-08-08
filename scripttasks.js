@@ -24,7 +24,7 @@ year = 2024
 date = month + "." + year
 
 const weekdays = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"]
-weekend = ["Saturday", "Sunday"]
+const weekend = ["Saturday", "Sunday"]
 
 const doneby = { 
     fname: "Liana",

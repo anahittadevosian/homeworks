@@ -1,10 +1,10 @@
 
-body {
+html body {
 margin: 25px;
 padding: 25px;
-background-color:#87CEEB;
+background-color:#87d1ee!important;
 color: black;
-font-size: 18px
+font-size: 18px;
 }
 
 .clearfix::after {
@@ -28,7 +28,6 @@ h2 { font-size: 26px;
     font-size: 26px
 }
 #skills {
-    #skills {
         text-align: left;
         font-size: 26px 
     }
@@ -36,6 +35,10 @@ h2 { font-size: 26px;
     .table-skills {
         text-align: left; 
         margin-bottom: 10px; 
+    }
+
+    table.table-hover {
+        font-size: 18px;
     }
     
     table {
